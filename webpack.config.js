@@ -1,5 +1,6 @@
 "use strict";
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -10,7 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
   },
-  mode: "production",
+  mode: "development",
   module: {
     rules: [
       { test: /\.js$/i, use: "babel-loader" },
@@ -37,5 +38,12 @@ module.exports = {
         type: "asset",
       },
     ],
+  },
+  // plugins: [new webpack.HotModuleReplacementPlugin()],
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    // hot: true,
+    port: 9000,
   },
 };

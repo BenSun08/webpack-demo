@@ -8,7 +8,7 @@ export class Search extends React.Component {
   render() {
     return (
       <div className="search-text">
-        This is the Search Page
+        This is the Search Page. I love Linkin Park
         <img src={LPImage}></img>
       </div>
     );
