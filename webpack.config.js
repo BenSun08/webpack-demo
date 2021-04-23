@@ -12,6 +12,13 @@ module.exports = {
   },
   mode: "production",
   module: {
-    rules: [{ test: /\.js$/, use: "babel-loader" }],
+    rules: [
+      { test: /\.js$/i, use: "babel-loader" },
+      { test: /\.css$/i, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+    ],
   },
 };
