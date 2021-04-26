@@ -39,7 +39,7 @@ module.exports = {
       },
     ],
   },
-  // plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
