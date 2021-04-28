@@ -23,7 +23,32 @@ module.exports = {
       { test: /\.css$/i, use: ["style-loader", "css-loader"] },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { importLoaders: 2 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    "postcss-preset-env",
+                    {
+                      browsers: ["last 2 version", ">1%"],
+                    },
+                  ],
+                  // [
+                  //   "autoprefixer",
+                  //   {
+                  //     overrideBrowserslist: ["last 2 version", ">1%"],
+                  //   },
+                  // ],
+                ],
+              },
+            },
+          },
+          "sass-loader",
+        ],
       },
       // prior webpack5
       // {
