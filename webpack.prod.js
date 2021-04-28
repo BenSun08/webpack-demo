@@ -1,7 +1,9 @@
 "use strict";
 const path = require("path");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -51,6 +53,35 @@ module.exports = {
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: "Linkin Park",
+      filename: "search.html",
+      template: path.resolve(__dirname, "public", "index.html"),
+      chunks: ["search"],
+      inject: true,
+      minify: true,
+      // minify: {
+      //   collapseWhitespace: true,
+      //   keepClosingSlash: true,
+      //   removeComments: true,
+      //   removeRedundantAttributes: true,
+      //   removeScriptTypeAttributes: true,
+      //   removeStyleLinkTypeAttributes: true,
+      //   useShortDoctype: true,
+      // },
+    }),
+    new HtmlWebpackPlugin({
+      title: "Test",
+      filename: "app.html",
+      template: path.resolve(__dirname, "public", "index.html"),
+      chunks: ["app"],
+      inject: true,
+      minify: true,
+    }),
     new MiniCssExtractPlugin({ filename: "[name].[contenthash:8].css" }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerWebpackPlugin()],
+  },
 };
