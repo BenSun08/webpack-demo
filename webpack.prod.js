@@ -14,6 +14,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash:8].js",
     assetModuleFilename: "images/[name].[contenthash:8].[ext]", // for webpack 5
+    clean: true,
   },
   mode: "production",
   module: {

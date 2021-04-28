@@ -8,7 +8,8 @@ export class Search extends React.Component {
   render() {
     return (
       <div className="search-text">
-        This is the Search Page. I love Linkin Park
+        This is the Search Page. I love Linkin Park. R.I.P. for Chester
+        Bennington
         <img src={LPImage}></img>
       </div>
     );
