@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const glob = require("glob");
+const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 
 function setMPA() {
   const entryFiles = glob.sync(path.resolve(__dirname, "src/*/index.js"));
@@ -106,6 +107,21 @@ module.exports = {
   plugins: [
     ...htmlWebpackPlugins,
     new MiniCssExtractPlugin({ filename: "[name].[contenthash:8].css" }),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: "react",
+          entry: "https://unpkg.com/react@17/umd/react.production.min.js",
+          global: "React",
+        },
+        {
+          module: "react-dom",
+          entry:
+            "https://unpkg.com/react-dom@17/umd/react-dom.production.min.js",
+          global: "ReactDOM",
+        },
+      ],
+    }),
   ],
   optimization: {
     minimize: true,
