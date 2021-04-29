@@ -4,12 +4,37 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
+const glob = require("glob");
+
+function setMPA() {
+  const entryFiles = glob.sync(path.resolve(__dirname, "src/*/index.js"));
+  const MPAConfig = entryFiles.reduce(
+    (prev, curr) => {
+      const entryNameMatch = curr.match(/src\/(.*)\/index\.js/i);
+      const entryName = entryNameMatch[1];
+      return {
+        entry: { ...prev.entry, [entryName]: `./src/${entryName}/index.js` },
+        htmlWebpackPlugins: [
+          ...prev.htmlWebpackPlugins,
+          new HtmlWebpackPlugin({
+            title: entryName,
+            filename: `${entryName}.html`,
+            template: path.resolve(__dirname, "public", "index.html"),
+            chunks: [entryName],
+            inject: true,
+            minify: true,
+          }),
+        ],
+      };
+    },
+    { entry: {}, htmlWebpackPlugins: [] }
+  );
+  return MPAConfig;
+}
+const { entry, htmlWebpackPlugins } = setMPA();
 
 module.exports = {
-  entry: {
-    app: "./src/index.js",
-    search: "./src/search.js",
-  },
+  entry,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash:8].js",
@@ -79,31 +104,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: "Linkin Park",
-      filename: "search.html",
-      template: path.resolve(__dirname, "public", "index.html"),
-      chunks: ["search"],
-      inject: true,
-      minify: true,
-      // minify: {
-      //   collapseWhitespace: true,
-      //   keepClosingSlash: true,
-      //   removeComments: true,
-      //   removeRedundantAttributes: true,
-      //   removeScriptTypeAttributes: true,
-      //   removeStyleLinkTypeAttributes: true,
-      //   useShortDoctype: true,
-      // },
-    }),
-    new HtmlWebpackPlugin({
-      title: "Test",
-      filename: "app.html",
-      template: path.resolve(__dirname, "public", "index.html"),
-      chunks: ["app"],
-      inject: true,
-      minify: true,
-    }),
+    ...htmlWebpackPlugins,
     new MiniCssExtractPlugin({ filename: "[name].[contenthash:8].css" }),
   ],
   optimization: {

@@ -1,6 +1,6 @@
 "use strit";
-import "./styles/index.scss";
-import LPImage from "./assets/linkin_park_logo.png";
+import "./index.scss";
+import LPImage from "../assets/linkin_park_logo.png";
 import React from "react";
 import ReactDOM from "react-dom";
 
