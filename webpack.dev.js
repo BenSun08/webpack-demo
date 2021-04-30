@@ -3,6 +3,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
+const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const glob = require("glob");
 
 function setMPA() {
@@ -83,6 +84,7 @@ module.exports = {
         },
       ],
     }),
+    new ESLintWebpackPlugin({ fix: true }),
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),

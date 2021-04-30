@@ -1,10 +1,9 @@
-"use strict";
-import React from "react";
-import ReactDOM from "react-dom";
-import { hello } from "./helloworld";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { hello } from './helloworld';
 
 function main() {
-  console.log(hello());
+  return 'hello world';
 }
 main();
 export class App extends React.Component {
@@ -13,4 +12,4 @@ export class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("#root"));
+ReactDOM.render(<App />, document.getElementById('#root'));

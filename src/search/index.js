@@ -1,8 +1,9 @@
-"use strit";
-import "./index.scss";
-import LPImage from "../assets/linkin_park_logo.png";
-import React from "react";
-import ReactDOM from "react-dom";
+'use strit';
+
+import './index.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import LPImage from '../assets/linkin_park_logo.png';
 
 export class Search extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export class Search extends React.Component {
   }
 
   handleTextClick() {
-    import("./dynamic").then(({ Dynamic }) => {
+    import('./dynamic').then(({ Dynamic }) => {
       this.setState({ Text: Dynamic });
     });
   }
@@ -26,10 +27,10 @@ export class Search extends React.Component {
           This is the Search Page.
           {Text && <Text />}
         </span>
-        <img src={LPImage}></img>
+        <img src={LPImage} />
       </div>
     );
   }
 }
 
-ReactDOM.render(<Search />, document.getElementById("root"));
+ReactDOM.render(<Search />, document.getElementById('root'));
