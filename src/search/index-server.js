@@ -1,11 +1,10 @@
 "use strit";
 
-import "./index.scss";
-import React from "react";
-import ReactDOM from "react-dom";
-import LPImage from "../assets/linkin_park_logo.png";
+require("./index.scss");
+const React = require("react");
+const LPImage = require("../assets/linkin_park_logo.png");
 
-export class Search extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +14,7 @@ export class Search extends React.Component {
 
   handleTextClick() {
     import("./dynamic").then(({ Dynamic }) => {
+      console.log(Dynamic, "this is dynamic imports");
       this.setState({ Text: Dynamic });
     });
   }
@@ -23,7 +23,7 @@ export class Search extends React.Component {
     const { Text } = this.state;
     return (
       <div className="search-text">
-        <span onClick={this.handleTextClick.bind(this)}>
+        <span className="text" onClick={this.handleTextClick.bind(this)}>
           This is the Search Page.
           {Text && <Text />}
           <img src={LPImage} />
@@ -33,4 +33,4 @@ export class Search extends React.Component {
   }
 }
 
-ReactDOM.render(<Search />, document.getElementById("root"));
+module.exports = <Search />;

@@ -93,8 +93,8 @@ module.exports = {
     port: 9000,
   },
   devtool: "eval",
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
-  },
+  // externals: {
+  //   react: "React",
+  //   "react-dom": "ReactDOM",
+  // },
 };

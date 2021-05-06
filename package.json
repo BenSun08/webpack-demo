@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
+    "build:ssr": "webpack --config webpack.ssr.js",
     "watch": "webpack --watch",
     "dev": "webpack serve --open --config webpack.dev.js"
   },
@@ -28,13 +29,17 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^1.7.0",
     "eslint-webpack-plugin": "^2.5.4",
+    "express": "^4.17.1",
     "file-loader": "^6.2.0",
+    "glob": "^7.1.6",
     "html-webpack-externals-plugin": "^3.8.0",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.5.0",
     "postcss": "^8.2.13",
     "postcss-loader": "^5.2.0",
     "postcss-preset-env": "^6.7.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sass": "^1.32.11",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
@@ -44,8 +49,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "glob": "^7.1.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@material-ui/core": "^4.11.4",
+    "@sanwang/sw-ui": "^1.0.2"
   }
 }
