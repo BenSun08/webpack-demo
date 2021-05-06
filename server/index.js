@@ -1,14 +1,14 @@
 if (typeof window === "undefined") {
   global.window = {};
 }
-const express = require("express");
-const { renderToString } = require("react-dom/server");
-const SSR = require("../dist/search-server");
+// const SSR = require("../src/search/index-server");
 const path = require("path");
 const fs = require("fs");
+const express = require("express");
+const { renderToString } = require("react-dom/server");
+const SSR = require("../dist-ssr/search-server");
 
 const renderMarkup = (str) => {
-  console.log(__dirname);
   const template = fs.readFileSync(
     path.resolve(__dirname, "../dist/search.html"),
     "utf-8"

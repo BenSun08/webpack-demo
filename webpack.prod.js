@@ -14,7 +14,10 @@ function setMPA() {
       const entryNameMatch = curr.match(/src\/(.*)\/index\.js/i);
       const entryName = entryNameMatch[1];
       return {
-        entry: { ...prev.entry, [entryName]: `./src/${entryName}/index.js` },
+        entry: {
+          ...prev.entry,
+          [entryName]: `./src/${entryName}/index.js`,
+        },
         htmlWebpackPlugins: [
           ...prev.htmlWebpackPlugins,
           new HtmlWebpackPlugin({
@@ -23,7 +26,9 @@ function setMPA() {
             template: path.resolve(__dirname, "public", "index.html"),
             chunks: [entryName],
             inject: true,
-            minify: true,
+            minify: {
+              removeComments: false,
+            },
           }),
         ],
       };

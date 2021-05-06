@@ -4,7 +4,6 @@ import "./index.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 import LPImage from "../assets/linkin_park_logo.png";
-
 export class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -26,11 +25,11 @@ export class Search extends React.Component {
         <span onClick={this.handleTextClick.bind(this)}>
           This is the Search Page.
           {Text && <Text />}
-          <img src={LPImage} />
         </span>
+        <img src={LPImage} />
       </div>
     );
   }
 }
 
-ReactDOM.render(<Search />, document.getElementById("root"));
+ReactDOM.hydrate(<Search />, document.getElementById("root"));

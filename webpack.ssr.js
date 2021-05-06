@@ -21,19 +21,7 @@ function setMPA() {
             ...prev.entry,
             [entryName]: `./src/${entryName}/index-server.js`,
           },
-          htmlWebpackPlugins: [
-            ...prev.htmlWebpackPlugins,
-            new HtmlWebpackPlugin({
-              title: entryName,
-              filename: `${entryName}.html`,
-              template: path.resolve(__dirname, "public", "index.html"),
-              chunks: [entryName],
-              inject: true,
-              minify: {
-                removeComments: false,
-              },
-            }),
-          ],
+          htmlWebpackPlugins: [...prev.htmlWebpackPlugins],
         };
       }
     },
@@ -46,10 +34,10 @@ const { entry, htmlWebpackPlugins } = setMPA();
 module.exports = {
   entry,
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist-ssr"),
     publicPath: "",
     filename: "[name]-server.js",
-    assetModuleFilename: "images/[name]-server.[ext]", // for webpack 5
+    assetModuleFilename: "images/[name].[contenthash:8].[ext]", // for webpack 5
     globalObject: "this",
     library: {
       type: "umd",

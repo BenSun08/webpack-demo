@@ -1,9 +1,8 @@
 "use strit";
 
-require("./index.scss");
+// require("./index.scss");
 const React = require("react");
 const LPImage = require("../assets/linkin_park_logo.png");
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -32,5 +31,4 @@ class Search extends React.Component {
     );
   }
 }
-
 module.exports = <Search />;
