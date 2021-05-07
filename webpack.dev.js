@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const glob = require("glob");
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 function setMPA() {
   const entryFiles = glob.sync(path.resolve(__dirname, "src/*/index.js"));
@@ -85,6 +86,7 @@ module.exports = {
       ],
     }),
     new ESLintWebpackPlugin({ fix: true }),
+    new FriendlyErrorsWebpackPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),

@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const glob = require("glob");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 function setMPA() {
   const entryFiles = glob.sync(path.resolve(__dirname, "src/*/index.js"));
@@ -127,6 +128,7 @@ module.exports = {
         },
       ],
     }),
+    new FriendlyErrorsWebpackPlugin()
   ],
   optimization: {
     minimize: true,
