@@ -4,8 +4,10 @@ const path = require('path');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const projectRoot = process.cwd();
+
 function setMPA() {
-  const entryFiles = glob.sync(path.resolve(__dirname, 'src/*/index.js'));
+  const entryFiles = glob.sync(path.resolve(projectRoot, 'src/*/index.js'));
   const MPAConfig = entryFiles.reduce(
     (prev, curr) => {
       const entryNameMatch = curr.match(/src\/(.*)\/index\.js/i);
@@ -20,7 +22,7 @@ function setMPA() {
           new HtmlWebpackPlugin({
             title: entryName,
             filename: `${entryName}.html`,
-            template: path.resolve(__dirname, 'public', 'index.html'),
+            template: path.resolve(projectRoot, 'public', 'index.html'),
             chunks: [entryName],
             inject: true,
             minify: {
@@ -39,7 +41,7 @@ const { entry, htmlWebpackPlugins } = setMPA();
 module.exports = {
   entry,
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(projectRoot, 'dist'),
     filename: '[name].js',
     clean: true,
   },

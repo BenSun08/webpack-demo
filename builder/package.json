@@ -37,6 +37,7 @@
     "glob": "^7.1.7",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
+    "rimraf": "^3.0.2",
     "webpack": "^5.36.2",
     "webpack-merge": "^5.7.3"
   }

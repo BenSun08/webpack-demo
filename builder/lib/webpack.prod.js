@@ -5,10 +5,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./webpack.base');
 const merge = require('./merge');
 
+const projectRoot = process.cwd();
+
 const prodConfig = {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(projectRoot, 'dist'),
     filename: '[name].[contenthash:8].js',
     assetModuleFilename: 'assets/[name].[contenthash:8].[ext]',
   },

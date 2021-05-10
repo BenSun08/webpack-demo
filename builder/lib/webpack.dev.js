@@ -4,13 +4,15 @@ const merge = require('./merge');
 
 const baseConfig = require('./webpack.base');
 
+const projectRoot = process.cwd();
+
 const devConfig = {
   mode: 'development',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(projectRoot, 'dist'),
     compress: true,
     hot: true,
     port: 9000,
