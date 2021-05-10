@@ -1,6 +1,6 @@
-const merge = require('./merge')
+const merge = require('./merge');
 
-const baseConfig = require('./webpack.base')
+const baseConfig = require('./webpack.base');
 
 const ssrConfig = {
   mode: 'production',
@@ -8,8 +8,8 @@ const ssrConfig = {
     rules: [
       { test: /\.css$/i, use: 'ignore-loader' },
       { test: /\.s[ac]ss$/i, use: 'ignore-loader' },
-    ]
-  }
-}
+    ],
+  },
+};
 
-module.exports = merge(baseConfig, ssrConfig)
+module.exports = merge(baseConfig, ssrConfig);

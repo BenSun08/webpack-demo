@@ -1,17 +1,16 @@
-const merge = require('./merge')
-const path = require('path')
+const path = require('path');
 
-const baseConfig = require('./webpack.base')
-
-const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const baseConfig = require('./webpack.base');
+const merge = require('./merge');
 
 const prodConfig = {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].[contenthash:8].js",
-    assetModuleFilename: "assets/[name].[contenthash:8].[ext]",
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash:8].js',
+    assetModuleFilename: 'assets/[name].[contenthash:8].[ext]',
   },
   module: {
     rules: [
@@ -19,35 +18,35 @@ const prodConfig = {
         test: /\.s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { importLoaders: 2 } },
+          { loader: 'css-loader', options: { importLoaders: 2 } },
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               postcssOptions: {
                 plugins: [
                   [
-                    "postcss-preset-env",
+                    'postcss-preset-env',
                     {
-                      browsers: ["last 2 version", ">1%"],
+                      browsers: ['last 2 version', '>1%'],
                     },
                   ],
                 ],
               },
             },
           },
-          "sass-loader",
+          'sass-loader',
         ],
       },
-    ]
+    ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "[name].[contenthash:8].css" }),
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash:8].css' }),
   ],
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerWebpackPlugin()],
-    splitChunks: {}
+    splitChunks: {},
   },
-}
+};
 
-module.exports = merge(baseConfig, prodConfig)
+module.exports = merge(baseConfig, prodConfig);

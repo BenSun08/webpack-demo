@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint lib/ --fix",
     "dev": "webpack serve --open --config lib/webpack.dev.js",
     "build": "webpack --config lib/webpack.prod.js",
     "build:ssr": "webpack --config lib/webpack.ssr.js"
@@ -13,22 +14,30 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.4",
-    "css-minimizer-webpack-plugin": "^2.0.0",
-    "friendly-errors-webpack-plugin": "^1.7.0",
-    "html-webpack-plugin": "^5.3.1",
-    "mini-css-extract-plugin": "^1.6.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "postcss": "^8.2.14",
     "postcss-loader": "^5.2.0",
     "sass": "^1.32.12",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
-    "webpack": "^5.36.2",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "css-minimizer-webpack-plugin": "^2.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "glob": "^7.1.7",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "webpack": "^5.36.2",
     "webpack-merge": "^5.7.3"
   }
 }

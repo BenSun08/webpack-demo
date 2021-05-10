@@ -1,12 +1,12 @@
-const { mergeWithRules }  = require('webpack-merge')
+const { mergeWithRules } = require('webpack-merge');
 
 module.exports = mergeWithRules({
   output: 'match',
   module: {
     rules: {
-      test: "match",
+      test: 'match',
       use: 'replace',
     },
   },
-  plugins: 'append'
-})
+  plugins: 'append',
+});

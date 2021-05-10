@@ -1,11 +1,11 @@
-const glob = require("glob");
-const path = require('path')
+const glob = require('glob');
+const path = require('path');
 
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const HtmlWebpackExternalsPlugin = require('html-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function setMPA() {
-  const entryFiles = glob.sync(path.resolve(__dirname, "src/*/index.js"));
+  const entryFiles = glob.sync(path.resolve(__dirname, 'src/*/index.js'));
   const MPAConfig = entryFiles.reduce(
     (prev, curr) => {
       const entryNameMatch = curr.match(/src\/(.*)\/index\.js/i);
@@ -20,7 +20,7 @@ function setMPA() {
           new HtmlWebpackPlugin({
             title: entryName,
             filename: `${entryName}.html`,
-            template: path.resolve(__dirname, "public", "index.html"),
+            template: path.resolve(__dirname, 'public', 'index.html'),
             chunks: [entryName],
             inject: true,
             minify: {
@@ -30,7 +30,7 @@ function setMPA() {
         ],
       };
     },
-    { entry: {}, htmlWebpackPlugins: [] }
+    { entry: {}, htmlWebpackPlugins: [] },
   );
   return MPAConfig;
 }
@@ -39,40 +39,40 @@ const { entry, htmlWebpackPlugins } = setMPA();
 module.exports = {
   entry,
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
     clean: true,
   },
   module: {
     rules: [
-      { test: /\.js$/i, use: "babel-loader" },
-      { test: /\.css$/i, use: ["style-loader", "css-loader"] },
+      { test: /\.js$/i, use: 'babel-loader' },
+      { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
       {
         test: /\.s[ac]ss$/i,
         use: [
           'style-loader',
-          { loader: "css-loader", options: { importLoaders: 2 } },
+          { loader: 'css-loader', options: { importLoaders: 2 } },
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               postcssOptions: {
                 plugins: [
                   [
-                    "postcss-preset-env",
+                    'postcss-preset-env',
                     {
-                      browsers: ["last 2 version", ">1%"],
+                      browsers: ['last 2 version', '>1%'],
                     },
                   ],
                 ],
               },
             },
           },
-          "sass-loader",
+          'sass-loader',
         ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        type: "asset",
+        type: 'asset',
         parser: {
           dataUrlCondition: {
             maxSize: 8 * 1024,
@@ -83,5 +83,5 @@ module.exports = {
   },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
-  ].concat(htmlWebpackPlugins)
-}
+  ].concat(htmlWebpackPlugins),
+};
